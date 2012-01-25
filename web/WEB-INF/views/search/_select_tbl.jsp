@@ -46,6 +46,10 @@
 					<td style="width: 325px;padding-left:10px;font-size:11px;"><div style="word-wrap: break-word;"> ${$item.abbreviate(fileId)} (${$item.sizeConversion(size)}) </div></td>
 
 					{{each(j) urls.url}}
+						{{if services.service[j] == 'SRM'}}
+							<td id="${$item.replacePeriods(datasetId)}_srm" style="float:right;font-size:11px;"><div id="${urls.url[j]}" style="word-wrap: break-word;vertical-align:middle"><a id="${fileId}" class="individual_srm" href="#">SRM</a></div></td>
+	   					{{/if}}
+<!--
 						{{if services.service[j] == 'HTTPServer'}}
 							<td id="${$item.replacePeriods(datasetId)}_http" style="float:right;font-size:11px;"><div id="${urls.url[j]}" style="word-wrap: break-word;vertical-align:middle"><a href="${urls.url[j]}">HTTP </a></div></td>
 	   					{{/if}}
@@ -55,6 +59,7 @@
 						{{if services.service[j] == 'OPENDAP'}}
 							<td id="${$item.replacePeriods(datasetId)}_openid" style="float:right;font-size:11px;"><div id="${urls.url[j]}" style="word-wrap: break-word;vertical-align:middle"><a href="${urls.url[j]}">OPENDAP </a></div></td>
 	   					{{/if}}
+-->
 					{{/each}}
 <!--
 					{{if technotes.technote.length > 2}}
