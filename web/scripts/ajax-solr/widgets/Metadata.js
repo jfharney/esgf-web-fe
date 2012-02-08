@@ -69,12 +69,53 @@
     	   */
         globalRecordId: '',
 	    
+        beforeRequest: function () {
+        	$('.ai_meta').die('click');
+        },
+        
         /**
          * All events regarding the metadata display are placed here.
          *
          * <p>This method is executed after the Solr response is received.</p>
          */
     	afterRequest: function () {
+    		
+    		var self = this;
+    		
+    		$('.ai_meta').live('click',function(){
+    			//alert('metadata ' + window.location.hostname + ':8081/esgf-web-fe');
+    			//location.href=window.location.hostname + ':8081/esgf-web-fe';
+    			//location.href = "http://google.com";
+    			
+    			var queryString = '/esgf-web-fe/metadataview?';
+    			
+    			//queryString += 
+    			
+    			var form = '<form action="'+ queryString +'" method="post" >';
+                
+                //iterate over the file_ids and add to query string
+                //this can probably be collapsed into the loop above
+    			var id = 'lll';
+    			form += '<input type="hidden" name="id" value="' + self.encodeUrl('ornl.ultrahighres.CESM1.fv_climos.v1|esg2-sdnl1.ccs.ornl.gov') + '">';
+                //for(var i=0;i<file_ids.length;i++) {
+    			//	var id = file_ids[i];
+    			//	id.replace("\\|","%7C");
+    			//	form += '<input type="hidden" name="id" value="' + id + '">';
+    			//}
+    			
+                form += '</form>';
+                
+                
+                
+                //send request using a dynamically generated form with the query string as the action
+                //the method should be post because the query string may be long
+                //jQuery('<form action="'+ queryString +'" method="post" >'+ '' +'</form>')
+                jQuery(form).appendTo('body').submit().remove();
+    			
+    			
+    		});
+    		
+    		/*
             var self = this;
             //need to attempt to phase this function out
             $("a.met").click(function () {
@@ -123,6 +164,7 @@
                     self.hideOverlay();
                 }//end onClose
             });
+            */
         },
         
         /**
@@ -142,6 +184,34 @@
         },
         
         
+        encodeUrl: function (url)
+        {
+            if (url.indexOf("?")>0)
+            {
+                encodedParams = "?";
+                parts = url.split("?");
+                params = parts[1].split("&");
+                for(i = 0; i < params.length; i++)
+                {
+                    if (i > 0)
+                    {
+                        encodedParams += "&";
+                    }
+                    if (params[i].indexOf("=")>0) //Avoid null values
+                    {
+                        p = params[i].split("=");
+                        encodedParams += (p[0] + "=" + escape(encodeURI(p[1])));
+                    }
+                    else
+                    {
+                        encodedParams += params[i];
+                    }
+                }
+                url = parts[0] + encodedParams;
+            }
+            return url;
+        },
+
         
         
         /**

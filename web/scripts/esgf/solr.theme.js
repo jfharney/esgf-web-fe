@@ -87,7 +87,8 @@ AjaxSolr.theme.prototype.result = function (doc, snippetReplica, snippetVersion,
       if(doc['replica']) {
     	  output += '<span style="font-size:9px;color:#7d5f45;font-weight:bold;font-style:italic;font-type:Trade Gothic;margin-right:3px"> Replica </span>';
       }
-      output += '<span class="actionitem ai_meta"><a href="/esgf-web-fe/scripts/esgf/overlays/metadata_overlay.html" class="met" rel="#metadata_overlay"' + allStr + '>';
+      //output += '<span class="actionitem ai_meta"><a href="/esgf-web-fe/scripts/esgf/overlays/metadata_overlay.html" class="met" rel="#metadata_overlay"' + allStr + '>';
+      output += '<span class="actionitem ai_meta"><a href="#" class="met"' + allStr + '>';
       output += doc.title + '</a>';
       output += '</div>' ;
       output += '<p id="links_' + doc.id + '" class="links"></p>';
