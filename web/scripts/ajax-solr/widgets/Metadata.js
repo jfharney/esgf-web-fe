@@ -87,7 +87,7 @@
     			//location.href=window.location.hostname + ':8081/esgf-web-fe';
     			//location.href = "http://google.com";
     			
-    			var queryString = '/esgf-web-fe/metadataview?';
+    			var queryString = '/esgf-web-fe/metadataview?id=' + self.encodeUrl('ornl.ultrahighres.CESM1.fv_climos.v1|esg2-sdnl1.ccs.ornl.gov');
     			
     			//queryString += 
     			
@@ -96,7 +96,7 @@
                 //iterate over the file_ids and add to query string
                 //this can probably be collapsed into the loop above
     			var id = 'lll';
-    			form += '<input type="hidden" name="id" value="' + self.encodeUrl('ornl.ultrahighres.CESM1.fv_climos.v1|esg2-sdnl1.ccs.ornl.gov') + '">';
+    			//form += '<input type="hidden" name="id" value="' + self.encodeUrl('ornl.ultrahighres.CESM1.fv_climos.v1|esg2-sdnl1.ccs.ornl.gov') + '">';
                 //for(var i=0;i<file_ids.length;i++) {
     			//	var id = file_ids[i];
     			//	id.replace("\\|","%7C");

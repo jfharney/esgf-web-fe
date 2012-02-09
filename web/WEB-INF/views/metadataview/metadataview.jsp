@@ -24,22 +24,71 @@
     
 <!-- scratch space for css -->
 <style>
+.leftAttr {
+	width: 40px;
+	border:0px solid #737373;
+}
+.rightAttr {
+	width: 300px;
+	border:0px solid #737373;
+}
 </style>
 
 <div class="span-24 last" style="margin-top:20px;min-height:500px;">
-	<h2 style="text-align:center">
-	Metadata Summary
-	</h2>
-	${metadata}
-	<%--  
-	<div class="prepend-1 span-24 append-1">
-		<%@ include file="/WEB-INF/views/goformview/go_form_view1_form.jsp" %>
-	</div>
+
+	<div class="span-23 prepend-1 last">
+	<%-- 
+		<div class="span-3">
+			<c:set var="logo"><spring:message code="esgf.homepage.institutionLogo" /></c:set>
+			<img src='<c:url value="${logo}" />' title="institution icon"/>
+		</div>
 	--%>
+		<div class="span-12 prepend-2" style="vertical-align:middle;padding:10px;">
+			<h3>
+					Metadata Summary for Dataset: 
+					</h3>
+					<h4 style="word-wrap: break-word;">
+						${record['fields'][3].values[0]}
+					</h4>
+		</div>
+		<div class="span-5 prepend-5 last" style="border:1px dotted #737373;padding:10px;">
+			Options: <br>
+			<a href="#" style="margin-left:20px;">Add To Datacart</a><br />
+			<a href="#" style="margin-left:20px;">Show CIM Metadata</a><br />
+			<a href="#" style="margin-left:20px;">Show Files in Dataset</a><br />
+		</div>
+	<%-- 
+		<table>
+			<tr>
+				<td style="vertical-align:middle;border:1px dotted #737373;width: 300px;padding:10px;">
+					
+					
+				</td>
+				<td style="width:100px;"></td>
+				<td>
+					<a href="#">Add To Datacart</a><br />
+					<a href="#">CIM Metadata</a><br />
+				</td>
+			</tr>
+			<tr>
+				<td>
+					<input type="checkbox" class="showfiles" id="showfiles" style="" /> <span style="font-weight:bold">Show Files</span>
+				</td>
+			</tr>
+		</table>
+		--%>		
+	</div>
+	
+	
+	
+	<div class="span-21 prepend-1 last">
+	
+		<%@ include file="/WEB-INF/views/metadataview/metadata_table.jsp" %>
+	
+	</div>
 </div>
 
-<!-- scratch space for any additional scripts
- -->
+
 <script>
 
 $(document).ready(function(){
