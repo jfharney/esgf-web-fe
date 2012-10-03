@@ -28,7 +28,8 @@
 	             	<h1>ESGF Login</h1>
 	                                        
 				    <!-- the value of the action attribute must be the same as the URL intercepted by the spring security filter  -->
-	                <form name="loginForm" action='<c:url value="/j_spring_openid_security_check"/>' >
+	                <%-- <form name="loginForm" action='<c:url value="/j_spring_openid_security_check"/>' > --%>
+					<form name="loginForm">
 						<script language="javascript">
 							function sanitize() {
 								openidElement = document.getElementById("openid_identifier");
@@ -36,6 +37,39 @@
 								openid = openid.replace("http:","https:")
 								               .replace(/^\s\s*/, '').replace(/\s\s*$/, '');
 								openidElement.value = openid;
+								
+								alert('openid: ' + openid + ' run ajax call here...');
+								
+								var credential_controller_url = '/esgf-web-fe/credential_proxy';
+								
+								var queryStr = {'openid' : openid};
+								
+						          jQuery.ajax({
+						        	  url: credential_controller_url,
+						        	  query: queryStr,
+						        	  async: false,
+						        	  type: 'GET',
+						        	  success: function(data) {   
+						        		  alert('data: ' + data);
+
+						        		  alert('here?' + data.credential['credential_str']);
+						        		  
+						        		  ESGF.localStorage.put('GO_Credential',data.credential['openid_str'],data.credential['credential_str']);
+						        		  
+						        		  
+						        		  ESGF.localStorage.printMap('GO_Credential');
+						        		  
+						        		  alert(ESGF.localStorage.get('GO_Credential','jfha'));
+						        		  
+						        		  
+						        		  //alert('stop it');
+						        	  },
+						          	  error: function() {
+						          		  alert('error in getting globus online credential');
+						          	  }
+						          });
+								
+								
 							}
 						</script>															    				
 	                    <div class="panel">  	                         	

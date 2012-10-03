@@ -32,7 +32,7 @@
 	
 		<!-- User registration view needs https -->
 		<security:intercept-url pattern="/createAccount" requires-channel="https"/>
-		<security:intercept-url pattern="/login" requires-channel="https"/>
+		<!-- <security:intercept-url pattern="/login" requires-channel="https"/> -->
 
 		<!-- <security:intercept-url pattern="/login" requires-channel="http" />
 		<security:intercept-url pattern="/j_spring_openid_security_check" requires-channel="http" /> -->
