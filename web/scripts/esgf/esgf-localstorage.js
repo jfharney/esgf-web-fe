@@ -95,8 +95,6 @@ ESGF.localStorage.getAll = function(category) {
  */
 ESGF.localStorage.put = function(category, key, value) {
 		
-	alert('put?');
-	
 		var added = false;
 	
 		if(localStorage.getItem(category) == null) {

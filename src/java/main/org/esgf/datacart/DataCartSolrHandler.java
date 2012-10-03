@@ -23,7 +23,7 @@ import org.esgf.metadata.JSONObject;
 
 public class DataCartSolrHandler {
 
-    private static String searchAPIURL = "http://localhost/esg-search/search?";
+    private static String searchAPIURL = "http://localhost:8080/esg-search/search?";
     private static String queryPrefix = "format=application%2Fsolr%2Bjson&type=File";
     private final static Logger LOG = Logger.getLogger(DataCartSolrHandler.class);
     
@@ -365,7 +365,7 @@ public class DataCartSolrHandler {
         try {
             this.solrQueryString += "&dataset_id=" + URLEncoder.encode(dataset_id,"UTF-8").toString();
             //System.out.println("\nthis.solrQueryString->\t" + URLEncoder.encode(dataset_id,"UTF-8").toString());
-            //System.out.println("\n\tthis.solrQueryString->\t" + this.solrQueryString);
+            System.out.println("\n\tthis.solrQueryString->\t" + this.solrQueryString);
             
         } catch (UnsupportedEncodingException e1) {
             // TODO Auto-generated catch block
@@ -374,6 +374,8 @@ public class DataCartSolrHandler {
         
         
         method.setQueryString(this.solrQueryString);
+        
+        //method.setQueryString("http://localhost:8080/esg-search/search?format=application%2Fsolr%2Bxml&type=File&limit=10&project=CSSEF&latest=true&shards=undefined:8983/solr&dataset_id=anl.cssef.homme.v1%7Cesg.anl.gov");
         
         method.getParams().setParameter(HttpMethodParams.RETRY_HANDLER,
                 new DefaultHttpMethodRetryHandler(3, false));

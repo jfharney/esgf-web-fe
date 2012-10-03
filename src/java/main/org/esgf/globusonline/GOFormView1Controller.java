@@ -116,6 +116,11 @@ public class GOFormView1Controller {
         String [] file_names = request.getParameterValues("child_id");
         String [] file_urls = request.getParameterValues("child_url");
         
+        
+        //grab the credential string
+        String credential = request.getParameter("credential");
+        System.out.println("\n\n\n\t\tGO Credential " + credential + "\n\n\n");
+        
         Map<String,Object> model = new HashMap<String,Object>();
 
         String myproxyServerStr = null;

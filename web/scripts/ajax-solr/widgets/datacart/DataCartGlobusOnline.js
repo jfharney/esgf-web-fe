@@ -125,9 +125,14 @@ AjaxSolr.DataCartGlobusOnlineWidget = AjaxSolr.AbstractWidget.extend({
 	    	
     		var globus_url = '/esgf-web-fe/goformview1';
 	        
+    		var openid = $('span.footer_openid').html();
+    		var go_credential = ESGF.localStorage.get('GO_Credential',openid);
+    		alert('openid: ' + openid + ' GO credential: ' + go_credential);
+    		
 	        //begin assembling queryString
-	        var queryString = 'type=create&id=' + selectedDocId;
+	        var queryString = 'type=create&id=' + selectedDocId + '&credential=' + go_credential;
 
+  		  
 
 	        //assemble the input fields with the query string
 	        for(var i=0;i<ids.length;i++) {

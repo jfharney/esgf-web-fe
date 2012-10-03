@@ -38,37 +38,33 @@
 								               .replace(/^\s\s*/, '').replace(/\s\s*$/, '');
 								openidElement.value = openid;
 								
-								alert('openid: ' + openid + ' run ajax call here...');
 								
 								var credential_controller_url = '/esgf-web-fe/credential_proxy';
 								
 								var queryStr = {'openid' : openid};
 								
-						          jQuery.ajax({
+						        jQuery.ajax({
 						        	  url: credential_controller_url,
 						        	  query: queryStr,
 						        	  async: false,
 						        	  type: 'GET',
 						        	  success: function(data) {   
-						        		  alert('data: ' + data);
 
-						        		  alert('here?' + data.credential['credential_str']);
+						        		  ESGF.localStorage.remove('GO_Credential',data.credential['openid_str']);
+						        		  
 						        		  
 						        		  ESGF.localStorage.put('GO_Credential',data.credential['openid_str'],data.credential['credential_str']);
 						        		  
-						        		  
 						        		  ESGF.localStorage.printMap('GO_Credential');
-						        		  
-						        		  alert(ESGF.localStorage.get('GO_Credential','jfha'));
-						        		  
-						        		  
-						        		  //alert('stop it');
+
+										  alert('openid: ' + data.credential['openid_str'] + ' credential: ' + data.credential['credential_str']);
 						        	  },
 						          	  error: function() {
 						          		  alert('error in getting globus online credential');
 						          	  }
-						          });
+						        });
 								
+
 								
 							}
 						</script>															    				
