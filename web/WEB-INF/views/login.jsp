@@ -28,8 +28,8 @@
 	             	<h1>ESGF Login</h1>
 	                                        
 				    <!-- the value of the action attribute must be the same as the URL intercepted by the spring security filter  -->
-	                <%-- <form name="loginForm" action='<c:url value="/j_spring_openid_security_check"/>' > --%>
-					<form name="loginForm">
+	                <form name="loginForm" action='<c:url value="/j_spring_openid_security_check"/>' > 
+<%-- 					<form name="loginForm"> --%>
 						<script language="javascript">
 							function sanitize() {
 								openidElement = document.getElementById("openid_identifier");
